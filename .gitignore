@@ -1,0 +1,34 @@
+# Python virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# Large training dataset (6.6 GB benchmark CSVs - preserved in workspace)
+dataset/
+
+# Node dependencies
+node_modules/
+frontend/node_modules/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# IDE configs
+.vscode/
+.idea/
+
+# Logs
+logs/*.log
+*.log
+
+# Checkpoints directory
+_checkpoints/
+
+# SQLite Database (backed up as snapshots)
+*.db
+*.db-journal
+*.sqlite3
