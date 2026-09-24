@@ -16,7 +16,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import { useNavigate } from "react-router-dom";
 
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 
 
 function Login() {
@@ -244,7 +244,7 @@ function Login() {
       ) {
 
         setError(
-          "Unable to connect to the NIDS backend. Make sure FastAPI is running on port 8000."
+          "Unable to connect to the NIDS backend. Please wait a few seconds while the cloud service starts, then try again."
         );
 
       } else {
