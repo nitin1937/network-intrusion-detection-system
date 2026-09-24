@@ -11,6 +11,15 @@ dataset/
 node_modules/
 frontend/node_modules/
 
+# React build outputs
+frontend/build/
+build/
+
+# Environment files
+.env
+.env.local
+.env.production
+
 # Python caches
 __pycache__/
 *.py[cod]
