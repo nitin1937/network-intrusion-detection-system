@@ -4,10 +4,22 @@ echo ====================================================================
 echo        RESTORE NIDS PROJECT TO WORKING STABLE CHECKPOINT
 echo ====================================================================
 echo.
-echo This will undo all changes and restore the exact working state
-echo from checkpoint: working-stable-v1
+echo Choose a restore point:
+echo  1. Checkpoint v2 (Recommended - Latest Deployed with 70/30 Split)
+echo  2. Checkpoint v1 (Initial Working Version)
 echo.
-set /p CONFIRM="Are you sure you want to restore to working checkpoint? (Y/N): "
+set /p CHOICE="Select checkpoint (1 or 2, default is 1): "
+if "%CHOICE%"=="2" (
+    set TARGET_TAG=working-stable-v1
+    set TARGET_DB=_checkpoints\nidps_checkpoint_working.db
+) else (
+    set TARGET_TAG=working-stable-v2
+    set TARGET_DB=_checkpoints\nidps_checkpoint_v2.db
+)
+
+echo.
+echo This will restore the exact state of %TARGET_TAG%.
+set /p CONFIRM="Are you sure you want to proceed? (Y/N): "
 if /i not "%CONFIRM%"=="Y" (
     echo Restore cancelled.
     pause
@@ -17,14 +29,14 @@ if /i not "%CONFIRM%"=="Y" (
 echo.
 echo [1/3] Reverting all source code and files via Git...
 cd /d "%~dp0"
-git reset --hard working-stable-v1
+git reset --hard %TARGET_TAG%
 git clean -fd
 
 echo.
 echo [2/3] Restoring working database snapshot...
-if exist "_checkpoints\nidps_checkpoint_working.db" (
-    copy /y "_checkpoints\nidps_checkpoint_working.db" "nidps.db" >nul
-    echo Database snapshot restored.
+if exist "%TARGET_DB%" (
+    copy /y "%TARGET_DB%" "nidps.db" >nul
+    echo Database snapshot restored from %TARGET_DB%.
 ) else (
     echo Note: Database backup not found, keeping current database.
 )
@@ -38,7 +50,7 @@ if not exist "frontend\build\index.html" (
 
 echo.
 echo ====================================================================
-echo  SUCCESS: Project has been completely restored to working checkpoint!
+echo  SUCCESS: Project has been restored to %TARGET_TAG%!
 echo  You can now run start_project.bat to launch the working system.
 echo ====================================================================
 echo.
