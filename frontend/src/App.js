@@ -164,53 +164,6 @@ function DashboardPage() {
 }
 
 
-/* ============================================================
-   LIVE MONITOR PAGE
-   ============================================================ */
-
-function LiveMonitorPage() {
-  return (
-    <Box>
-      <Box
-        sx={{
-          mb: 3,
-        }}
-      >
-        <h1>Live Monitor</h1>
-
-        <p
-          style={{
-            color: "#64748b",
-          }}
-        >
-          Real-time network traffic and
-          AI-based intrusion detection.
-        </p>
-      </Box>
-
-      <Box
-        sx={{
-          display: "grid",
-
-          gridTemplateColumns: {
-            xs: "1fr",
-            lg: "2fr 1fr",
-          },
-
-          gap: 3,
-        }}
-      >
-        <TrafficChart />
-
-        <AttackPieChart />
-      </Box>
-
-      <Box sx={{ mt: 3 }}>
-        <RecentAlerts />
-      </Box>
-    </Box>
-  );
-}
 
 
 /* ============================================================
@@ -494,18 +447,6 @@ function App() {
                 />
 
 
-                {/* ------------------------------------------
-                    LIVE MONITOR
-                    ------------------------------------------ */}
-
-                <Route
-                  path="/live-monitor"
-                  element={
-                    <PageContainer>
-                      <LiveMonitorPage />
-                    </PageContainer>
-                  }
-                />
 
 
                 {/* ------------------------------------------

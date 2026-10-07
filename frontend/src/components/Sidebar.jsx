@@ -1,6 +1,5 @@
 import {
   Dashboard,
-  Monitor,
   Warning,
   BarChart,
   Settings,
@@ -34,11 +33,6 @@ const menuItems = [
     path: "/simulation",
     icon: <PlayCircle sx={{ color: "#38bdf8" }} />,
     badge: "LIVE",
-  },
-  {
-    text: "Live Monitor",
-    path: "/live-monitor",
-    icon: <Monitor />,
   },
   {
     text: "Attack Logs",
